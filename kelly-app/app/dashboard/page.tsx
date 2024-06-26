@@ -1,61 +1,59 @@
-import React from 'react';
-import Layout from '../layout';
-// import Layout from '../components/layout';
-
-const Dashboard: React.FC = () => {
+// pages/dashboard.tsx
+import { FaUserCircle, FaCalendarAlt, FaUsers,FaSearch, FaBookReader, FaChartBar, FaBookOpen, FaCheck } from 'react-icons/fa';
+import Image from 'next/image';
+import { FaCediSign } from 'react-icons/fa6';
+export default function DashboardPage() {
   return (
-    <Layout>
-      <div className="flex">
-        <nav className="w-1/4 bg-white shadow p-4">
-          <ul>
-            <li className="mb-2"><a href="#" className="text-blue-600">Dashboard</a></li>
-            <li className="mb-2"><a href="#" className="text-gray-600">Payment Info</a></li>
-            <li className="mb-2"><a href="#" className="text-gray-600">Registration</a></li>
-            <li className="mb-2"><a href="#" className="text-gray-600">Courses</a></li>
-            <li className="mb-2"><a href="#" className="text-gray-600">Drop Semester</a></li>
-            <li className="mb-2"><a href="#" className="text-gray-600">Result</a></li>
-            <li className="mb-2"><a href="#" className="text-gray-600">Notice</a></li>
-            <li className="mb-2"><a href="#" className="text-gray-600">Schedule</a></li>
-            <li><a href="#" className="text-gray-600">Logout</a></li>
-          </ul>
-        </nav>
-        <section className="w-3/4 p-4">
-          <div className="bg-white shadow p-4 mb-4">
-            <h2 className="text-2xl mb-2">Welcome back, Student!</h2>
-            <p className="text-gray-600">Always stay updated in your student portal.</p>
+    <div className="min-h-screen bg-purple-300 flex flex-col items-center">
+      <header className="w-full bg-white shadow p-4 flex justify-between items-center">
+        <h1 className="text-2xl text-purple-400  font-semibold">WELCOME TO STUDENT PORTAL</h1>
+        <div className="flex items-center space-x-4">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search"
+              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+            <FaSearch className="absolute left-3 top-2 text-gray-500" />
           </div>
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-white shadow p-4">
-              <h3 className="text-xl">Finance</h3>
-              <div className="mt-2">
-                <p>Total Payable: 20000</p>
-                <p>Total Aid: 5000</p>
-                <p>Others: 1300</p>
-              </div>
-            </div>
-            <div className="bg-white shadow p-4">
-              <h3 className="text-xl">Enrolled Courses</h3>
-              <ul className="mt-2">
-                <li>Object Oriented Programming</li>
-                <li>Fundamentals of Database Systems</li>
-              </ul>
-            </div>
-            <div className="bg-white shadow p-4">
-              <h3 className="text-xl">Course Instructors</h3>
-              <ul className="mt-2">
-                <li>Instructor 1</li>
-                <li>Instructor 2</li>
-              </ul>
-            </div>
-          </div>
-          <div className="bg-white shadow p-4 mt-4">
-            <h3 className="text-xl">Daily Notice</h3>
-            <p className="mt-2">Prelim payment due...</p>
-          </div>
-        </section>
-      </div>
-    </Layout>
+          <Image
+            src="/vercel.svg"
+            alt="Profile"
+            width={180}
+            height={180}
+            className="w-10 h-10 rounded-full border-2 border-gray-300"
+          />
+        </div>
+      </header>
+
+      <main className="flex-1 flex flex-col items-center justify-center p-6">
+        <div className="grid grid-cols-4 gap-6">
+          <Tile icon={<FaUserCircle />} label="PROFILE" />
+          <Tile icon={<FaCalendarAlt />} label="EVENTS" />
+          <Tile icon={<FaUsers />} label="STAFFS" />
+          <Tile icon={<FaCheck />} label="ATTENDANCE" />
+          <Tile icon={<FaBookReader />} label="COURSES" />
+          <Tile icon={<FaChartBar />} label="GRADESHEET" />
+          <Tile icon={<FaBookOpen />} label="ASSIGNMENTS" />
+          <Tile icon={<FaCediSign />} label="FEES DETAILS" />
+        </div>
+      </main>
+    </div>
   );
 };
 
-export default Dashboard;
+interface TileProps {
+  icon: React.ReactNode;
+  label: string;
+}
+
+const Tile: React.FC<TileProps> = ({ icon, label }) => {
+  return (
+    <div className="p-6 bg-white rounded-lg shadow-md flex flex-col items-center justify-center">
+      <div className="text-4xl text-purple-700 mb-4">{icon}</div>
+      <div className="font-semibold text-gray-700">{label}</div>
+    </div>
+  );
+}
+
+// export default function DashboardPage()
